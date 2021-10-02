@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { GlobalStyle, UniformTheme } from './Styles/Global';
+import { Card } from './MicroComponents/Card';
+import { PrimaryButton, SecondaryButton } from './MicroComponents/Button';
+import { Item } from './MicroComponents/Item';
+import { LoginPage } from './Pages/Login';
+import { DashboardPage } from './Pages/Dashboard';
+import { SearchBar } from "./MicroComponents/SearchBar";
+import { TaskPage } from "./Pages/Tasks";
+import { AddTaskPage } from "./Pages/AddTask";
+import { SideBar } from "./AuxComponents/Sidebar";
+import { ThemeProvider, useTheme } from "styled-components";
 
+// routing happens here
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={UniformTheme}>
+      <GlobalStyle theme={UniformTheme}/>
+      <TaskPage/>
+      {/* <SearchBar/> */}
+      {/* <DashboardPage/> */}
+      {/* <AddTaskPage/> */}
+      {/* <LoginPage/> */}
+    </ThemeProvider>
   );
 }
 
