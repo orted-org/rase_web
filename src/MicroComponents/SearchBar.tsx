@@ -56,4 +56,4 @@ function SearchBar(props: ISearchBarProps){
     );
 }
 
-export { SearchBar };
+export { SearchBar, StyledSearchBar };

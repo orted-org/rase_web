@@ -11,7 +11,8 @@ import { taskData, taskTeamData, taskTeamsData } from "../util/taskData";
 import { PlaceFiller } from "../AuxComponents/Filler";
 import { IconContainer } from "../MicroComponents/IconContainer";
 import { SVG } from "../AuxComponents/Svg";
-import { SearchBar } from "../MicroComponents/SearchBar";
+import { StyledSearchBar } from "../MicroComponents/SearchBar";
+import { StyledText } from "../MicroComponents/SecText";
 import { ITeam } from "../Interfaces";
 import { SubmissionType } from "../Types";
 
@@ -49,24 +50,6 @@ interface ITaskPageProps{
 
 // --------------------------------- End of interfaces -----------------------------
 
-// ------------------------------- Styled components ---------------------------------
-
-const StyledText = styled.p`
-    color: ${props => props.theme.secondaryText};
-    font-family: ${props => props.theme.secondaryFont};
-    font-size: 0.8rem;
-`;
-
-const StyledSearchBarDiv = styled.input`
-    border: none;
-    outline: none;
-    border-bottom: 2px solid ${props => props.theme.primaryAccent};
-    width: 100%;
-    margin: 10px auto;
-    font-size: 1.1rem;
-`;
-
-// ------------------------------ End of styled components --------------------------------------
 
 function TeacherTeamsView(props: ITeacherTeamsViewProps){
     const data = props.teamsData;
@@ -118,7 +101,7 @@ function TeacherTeamsView(props: ITeacherTeamsViewProps){
                 }}
                 ref={searchBarDiv}   
                 >
-                <StyledSearchBarDiv
+                <StyledSearchBar
                     type = "text"
                     ref = {searchBar}
                     placeholder = "Search for teams"

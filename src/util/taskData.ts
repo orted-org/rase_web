@@ -14,23 +14,15 @@ const taskTeamsData: ITeam[] = [
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
-        teamName: "Reporting Application ",
+        teamName: "Online voting portal",
         submissionStatus: false,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
-        teamName: "Reporting Application Engineering",
+        teamName: "Restaurant service",
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
-        teamName: "Reporting Application for Software",
-        submissionStatus: true,
-        submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
-    },{
-        teamName: "Reporting Application for Software Engineering",
-        submissionStatus: false,
-        submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
-    },{
-        teamName: "Reporting Application for Software Engineering",
+        teamName: "Online complaint service",
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
@@ -38,7 +30,15 @@ const taskTeamsData: ITeam[] = [
         submissionStatus: false,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
+        teamName: "Garbage collection system",
+        submissionStatus: true,
+        submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
+    },{
         teamName: "Reporting Application for Software Engineering",
+        submissionStatus: false,
+        submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
+    },{
+        teamName: "OTT platform",
         submissionStatus: false,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
