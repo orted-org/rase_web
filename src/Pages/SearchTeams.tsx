@@ -108,4 +108,4 @@ function SearchTeamsPage(props: ISearchTeamsPageProps){
     );
 }
 
-export { SearchTeamsPage };
+export default SearchTeamsPage;

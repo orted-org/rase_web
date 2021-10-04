@@ -77,4 +77,4 @@ function AddTaskPage(props: AddTaskPageProps){
     );
 }
 
-export { AddTaskPage };
+export default AddTaskPage;

@@ -44,4 +44,5 @@ function LoadingAnimation() {
     </div>
   );
 }
+
 export default LoadingAnimation;

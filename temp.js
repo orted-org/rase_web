@@ -9,6 +9,11 @@
 // iv) add key attribute to every recycle view mapping as database id of the item while connecting to db
 // v) see if we can use useContext for sidebar state
 // vi) Add loading animations appropriately
+// vii) add-task and search-teams routes should render only if the user is teacher
+// viii) lazy rendering should be fixed
+// ix) authentication should be done
+// x) make a 404-notFound page
+// xi) need to create a team selection page
 
 // sidebar options:
 // i) download data

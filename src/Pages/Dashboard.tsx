@@ -245,4 +245,4 @@ function DashboardPage(props: IDashBoardPageProps){
 
 // ----------------------------------- End of components to be exported ------------------------------------------
 
-export { DashboardPage };
+export default DashboardPage ;

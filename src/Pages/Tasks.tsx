@@ -329,4 +329,4 @@ function TaskPage(props: ITaskPageProps){
     );
 };
 
-export { TaskPage };
+export default TaskPage;

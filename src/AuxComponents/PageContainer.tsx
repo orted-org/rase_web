@@ -6,6 +6,7 @@ const StyledPageContainer = styled.div`
 
 const StyledPageContent = styled.section`
     max-width: 500px;
+    min-height: 100vh;
     position: relative;
     padding-top: 80px;
     margin: 0 auto;

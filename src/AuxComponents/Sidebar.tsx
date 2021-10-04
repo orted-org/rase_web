@@ -31,18 +31,32 @@ const SideBarContainer = styled.div`
     }
 `;
 
-const StyledOption = styled.a`
+const StyledSidebarOption = styled.a`
     cursor: pointer;
     transition: all 0.25s;
     width: 90%;
     font-size: 1.3rem;
-    text-align: center;
+    display: flex;
+    justify-content: center;
     margin: 5px;
     border-radius: ${props => props.theme.cornerRad};
     padding: 10px;
     &:hover{
         background-color: ${props=>props.theme.primaryAccent};
         color: ${props=>props.theme.primaryBack}
+    }
+`;
+
+const StyledSidebarSVG = styled.div`
+    cursor: pointer;
+    display: inline;
+    margin-right: 10px;
+    & > svg {
+        height: 25px;
+        width: 25px;
+    }
+    & > svg:hover {
+        color:  ${props=>props.theme.primaryBack}
     }
 `;
 
@@ -68,8 +82,19 @@ function SideBar(props: ISideBarProps){
                 {SVG.cross}
             </IconContainer>
             <StyledFlexBoxCol style={{alignItems: 'center', paddingTop: 60}}>
-                {isTeacher && <StyledOption>Search Teams</StyledOption>}
-                {isTeacher ? <StyledOption>Download all data</StyledOption> : <StyledOption>Download team data</StyledOption>}
+                {isTeacher && <StyledSidebarOption>
+                    <StyledSidebarSVG style={{
+                        height: '25px',
+                        width: '25px'
+                    }}>{SVG.search}</StyledSidebarSVG>
+                    Search Teams
+                    </StyledSidebarOption>}
+                {isTeacher ? <StyledSidebarOption>
+                    <StyledSidebarSVG style={{
+                        height: '25px',
+                        width: '25px'
+                    }}>{SVG.download}</StyledSidebarSVG>
+                    Download all data</StyledSidebarOption> : <StyledSidebarOption>Download team data</StyledSidebarOption>}
 
                 <PrimaryButton text="Log out" sty={{
                     width: '90%', 
