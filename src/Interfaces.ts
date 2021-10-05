@@ -9,6 +9,7 @@ export interface ITask{
 
 export interface ITeam{
     teamName: string;
+    teamMembers?: string[];
     submissionStatus: boolean;
     submissionURL: string;
 }

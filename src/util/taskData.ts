@@ -11,6 +11,12 @@ const taskData: ITaskData = {
 const taskTeamsData: ITeam[] = [
     {
         teamName: "Reporting Application for Software Engineering",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{

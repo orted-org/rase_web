@@ -94,7 +94,12 @@ function SideBar(props: ISideBarProps){
                         height: '25px',
                         width: '25px'
                     }}>{SVG.download}</StyledSidebarSVG>
-                    Download all data</StyledSidebarOption> : <StyledSidebarOption>Download team data</StyledSidebarOption>}
+                    Download all data</StyledSidebarOption> : <StyledSidebarOption>
+                    <StyledSidebarSVG style={{
+                        height: '25px',
+                        width: '25px'
+                    }}>{SVG.download}</StyledSidebarSVG>
+                    Download team data</StyledSidebarOption>}
 
                 <PrimaryButton text="Log out" sty={{
                     width: '90%', 

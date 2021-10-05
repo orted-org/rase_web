@@ -7,6 +7,7 @@ import { SideBar } from "../AuxComponents/Sidebar";
 import { StyledInput, StyledInputArea, StyledSelect, StyledOption, StyledLabel } from "../MicroComponents/Input";
 import { IconContainer } from "../MicroComponents/IconContainer";
 import { StyledPageContainer, StyledPageContent } from "../AuxComponents/PageContainer";
+import { Redirect } from "react-router";
 
 interface AddTaskPageProps{
 
@@ -29,6 +30,12 @@ function AddTaskPage(props: AddTaskPageProps){
 
     const handleSelect = (e: any)=>{
         setSubmissionType(e.target.value);
+    }
+
+    if(!isTeacher){
+        return (
+            <Redirect to='/dashboard'/>
+        )
     }
 
     return (

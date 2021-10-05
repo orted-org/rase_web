@@ -16,6 +16,8 @@ const DashboardPage = React.lazy(() => import("./Pages/Dashboard"));
 const TaskPage = React.lazy(() => import("./Pages/Tasks"));
 const AddTaskPage = React.lazy(() => import("./Pages/AddTask"));
 const SearchTeamsPage = React.lazy(() => import("./Pages/SearchTeams"));
+const JoinTeamPage = React.lazy(() => import("./Pages/JoinTeam"));
+const NotFound = React.lazy(() => import("./Pages/NotFound"));
 
 // ------------------- dynamic import ends -------------------------------
 
@@ -41,6 +43,12 @@ function App() {
             </Route>
             <Route exact path='/dashboard'>
               <DashboardPage />
+            </Route>
+            <Route exact path='/join-team'>
+              <JoinTeamPage />
+            </Route>
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
         </Router>

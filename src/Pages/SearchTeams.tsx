@@ -14,6 +14,7 @@ import { StyledCardContainer, StyledTeam, StyledUpcoming } from "../MicroCompone
 import { SecondaryButton } from "../MicroComponents/Button";
 import { taskTeamsData } from "../util/taskData";
 import { searchEngine } from "../Helpers/SearchUtil";
+import { Redirect } from "react-router-dom";
 
 // ----------------------------- Interfaces --------------------------
 
@@ -39,6 +40,12 @@ function SearchTeamsPage(props: ISearchTeamsPageProps){
     useEffect(()=>{
         setSearchResult(searchEngine(teamsData, searchText));
     },[searchText])
+
+    if(!isTeacher){
+        return (
+            <Redirect to='/dashboard'/>
+        )
+    }
 
     return (
         <StyledPageContainer>
