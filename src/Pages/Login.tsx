@@ -1,6 +1,13 @@
 import styled, { useTheme } from "styled-components";
 import googleLogo from "../Resources/googleLogo.png";
 import { SVG } from "../AuxComponents/Svg";
+import GoogleLogin from "react-google-login";
+import Config from "../Http/HttpConfig";
+import LoadingAnimation from "../AuxComponents/LoadingAnimation";
+import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { UserAuthContext } from "../util/Context";
+import { makeLoginPostCall } from "../Http/Http.Auth";
 
 const StyledEllipseTop = styled.div`
     position: absolute;
@@ -68,6 +75,32 @@ const Caption = styled.div`
 
 function LoginPage(){
     const theme = useTheme() as any;
+    document.title = "RASE | Login";
+    const [text, setText] = useState('Donno');
+
+    const { setUserLoggedIn } = useContext(UserAuthContext);
+    const history = useHistory();
+    function googleResponse(response: any) {
+        if (response.tokenId === undefined || response.tokenId === null) {
+        } else {
+            const tokenId = response.tokenId;
+            makeLoginPostCall(tokenId)
+            .then((res) => {
+                if (res.status === 200) {
+                //redirect to fragment page
+                res.json().then((data) => {
+                    setUserLoggedIn(true);
+                    history.push(history.location);
+                });
+                } else {
+                throw new Error("Status Not 200");
+                }
+            })
+            .catch((err) => {
+                <h2>Something went wrong, please try again</h2>
+            });
+        }
+    }
 
     return (
         <StyledPage>
@@ -80,12 +113,35 @@ function LoginPage(){
                 
                 <div>Sign in with your student</div>
                 <div>mail id</div>
-                <PrimaryButton  
+                {/* <PrimaryButton  
                     style={{width: 300, boxShadow: theme.boxShadow, color: theme.primaryAccent }}
                 >
                     <img style={{ height: "28px" }} src={googleLogo} alt="" />
                     <p style={{ marginLeft: "10px" }}>Sign in with Google</p>
-                </PrimaryButton>
+                </PrimaryButton> */}
+                <GoogleLogin
+                    clientId={Config.googleClientId}
+                    render={(renderProps) => {
+                        if (renderProps.disabled || false) return <LoadingAnimation />;
+                        return (
+                            <PrimaryButton  
+                                style={{width: 300, boxShadow: theme.boxShadow, color: theme.primaryAccent }}
+                            >
+                                <img style={{ height: "28px" }} src={googleLogo} alt="" />
+                                <p style={{ marginLeft: "10px" }}>Sign in with Google</p>
+                            </PrimaryButton>
+                        );
+                    }}
+                    onSuccess={(response) => {
+                        googleResponse(response);
+                        setText('success');
+                    }}
+                    onFailure={(response) => {
+                        googleResponse(response);
+                        setText('failure')
+                    }}
+                    cookiePolicy={"single_host_origin"}
+                />
             </StyledContent>
             <StyledEllipseBott>
                 {SVG.loginBotLeft}
@@ -93,6 +149,7 @@ function LoginPage(){
             <StyledEllipseTop>
                 {SVG.loginTopRight}
             </StyledEllipseTop>
+            <div>{text}</div>
             <Caption>
                     <div style={{fontFamily: "inherit"}}>By the students of NITW for the students</div>
                     <div style={{fontFamily: "inherit"}}>of NITW</div>

@@ -6,3 +6,4 @@
 // iv) add key attribute to every recycle view mapping as database id of the item while connecting to db
 // v) see if we can use useContext for sidebar state
 // ix) authentication should be done
+// x) see context and reducer hooks once again
