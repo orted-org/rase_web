@@ -1,4 +1,4 @@
-import styled, { useTheme } from "styled-components";
+import { useTheme } from "styled-components";
 import { StyledTopBar } from "../MicroComponents/TopBar";
 import { SideBar } from "../AuxComponents/Sidebar";
 import { StyledPageContainer, StyledPageContent, StyledHeading } from "../AuxComponents/PageContainer";
@@ -11,7 +11,7 @@ import { StyledFlexBoxRow, StyledRecyclerView } from "../AuxComponents/Flex";
 import { ITeam } from "../Interfaces";
 import { StyledItem } from "../MicroComponents/Item";
 import { StyledCardContainer, StyledTeam, StyledUpcoming } from "../MicroComponents/Card";
-import { SecondaryButton } from "../MicroComponents/Button";
+import { FixedButton, SecondaryButton } from "../MicroComponents/Button";
 import { taskTeamsData } from "../util/taskData";
 import { searchEngine } from "../Helpers/SearchUtil";
 
@@ -70,6 +70,10 @@ function JoinTeamPage(props: ISearchTeamsPageProps){
                     }}
                 />
             </div>
+            <StyledHeading>
+                <h3>Available teams</h3>
+                <PlaceFiller/>
+            </StyledHeading>
             <StyledRecyclerView>
                 {
                     searchText === ''?
@@ -115,22 +119,21 @@ function JoinTeamPage(props: ISearchTeamsPageProps){
                                                 >{team.teamMembers[3]}</p>
                                             </StyledFlexBoxRow>
                                         </StyledTeam>
-                                        
                                         <StyledUpcoming style={{alignSelf: 'center'}}>
-                                            <SecondaryButton text="View" style={{ width: '100%'}}></SecondaryButton>
+                                            <SecondaryButton text="Join" style={{ width: '100%'}}></SecondaryButton>
                                         </StyledUpcoming>
                                     </StyledCardContainer>
                                 </StyledItem>
                             )
                         }
-
+                        
                     }) : 
                     searchResult.map((team: ITeam)=>{
                         if(team.teamMembers!==undefined){
                             for(let i = 0; i<team.teamMembers.length; i++){
                                 team.teamMembers[i] = team.teamMembers[i].split(" ")[0];
                             }
-
+                            
                             return (
                                 <StyledItem>
                                     <StyledCardContainer>
@@ -178,6 +181,7 @@ function JoinTeamPage(props: ISearchTeamsPageProps){
                     })
                 }
             </StyledRecyclerView>
+            <FixedButton text="Create team" />
             </StyledPageContent>
         </StyledPageContainer>
     );

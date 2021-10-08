@@ -138,7 +138,7 @@ function LoginPage(){
                     }}
                     onFailure={(response) => {
                         googleResponse(response);
-                        setText('failure')
+                        setText('failure');
                     }}
                     cookiePolicy={"single_host_origin"}
                 />

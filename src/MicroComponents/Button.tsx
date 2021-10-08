@@ -12,7 +12,11 @@ interface ISecondaryButtonProps{
     style?: React.CSSProperties;
     onClick?: ()=>void;
     text: string
-}
+};
+
+interface IFixedButtonProps{
+    text: string;
+};
 
 // -------------- End of interfaces -----------------
 
@@ -82,7 +86,22 @@ function SecondaryButton(props: ISecondaryButtonProps){
     );
 };
 
+function FixedButton(props: IFixedButtonProps){
+    return (
+        <PrimaryButton text={props.text} sty=
+                {{
+                    position: 'fixed', 
+                    bottom: '20px', 
+                    left: '50%', 
+                    transform: 'translate(-50%)', 
+                    width: 'fit-content', 
+                    padding: '10px 20px'
+                }}
+            />
+    );
+}
+
 // ------------- End of components ------------------
 
-export { PrimaryButton, SecondaryButton };
+export { PrimaryButton, SecondaryButton, FixedButton };
 

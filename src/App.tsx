@@ -15,6 +15,7 @@ const LoginPage = React.lazy(() => import("./Pages/Login"));
 const DashboardPage = React.lazy(() => import("./Pages/Dashboard"));
 const TaskPage = React.lazy(() => import("./Pages/Tasks"));
 const AddTaskPage = React.lazy(() => import("./Pages/AddTask"));
+const AddTeamPage = React.lazy(() => import("./Pages/AddTeam"));
 const SearchTeamsPage = React.lazy(() => import("./Pages/SearchTeams"));
 const JoinTeamPage = React.lazy(() => import("./Pages/JoinTeam"));
 const NotFound = React.lazy(() => import("./Pages/NotFound"));
@@ -43,6 +44,9 @@ function App() {
               </Route>
               <Route exact path='/add-task'>
                 <AddTaskPage />
+              </Route>
+              <Route exact path='/add-team'>
+                <AddTeamPage />
               </Route>
               <Route exact path='/search-teams'>
                 <SearchTeamsPage />

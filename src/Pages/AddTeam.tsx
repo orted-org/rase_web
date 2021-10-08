@@ -8,19 +8,19 @@ import { StyledInput, StyledInputArea, StyledSelect, StyledOption, StyledLabel }
 import { IconContainer } from "../MicroComponents/IconContainer";
 import { StyledPageContainer, StyledPageContent } from "../AuxComponents/PageContainer";
 import { Redirect } from "react-router";
+import { useTheme } from "styled-components";
 
 interface AddTaskPageProps{
 
 };
 
-
-
-function AddTaskPage(props: AddTaskPageProps){
-    const [isTeacher, setIsTeacher] = useState(true);
+function AddTeamPage(props: AddTaskPageProps){
+    const [isTeacher, setIsTeacher] = useState(false);
     const [isSideBarOpen, setIsSidebarOpen] = useState(false);
-    const [title, setTitle] = useState('');
+    const [teamName, setTeamName] = useState('');
     const [desc, setDesc] = useState('');
-    const [submissionType, setSubmissionType] = useState('');
+
+    const theme = useTheme() as any;
 
     const toggleSideBar = ()=>{
         setIsSidebarOpen(prevState=>{
@@ -28,11 +28,7 @@ function AddTaskPage(props: AddTaskPageProps){
         });
     }
 
-    const handleSelect = (e: any)=>{
-        setSubmissionType(e.target.value);
-    }
-
-    if(!isTeacher){
+    if(isTeacher){
         return (
             <Redirect to='/dashboard'/>
         )
@@ -45,37 +41,63 @@ function AddTaskPage(props: AddTaskPageProps){
                 <IconContainer onClick={toggleSideBar}>
                     {SVG.menubar}
                 </IconContainer>
-                <h2>Add Task</h2>
+                <h2>Add Team</h2>
                 <PlaceFiller></PlaceFiller>
             </StyledTopBar>
             <StyledPageContent>
-                <StyledLabel htmlFor = "title">Title</StyledLabel>
+                <StyledLabel htmlFor = "teamName">Team Name</StyledLabel>
                 <StyledInput
                     type = "text"
-                    id = 'title'
-                    name = 'title'
+                    id = 'teamName'
+                    name = 'teamName'
                     placeholder = "Title of the task"
-                    value = {title}
+                    value = {teamName}
                     onChange = {(e)=>{
-                        setTitle(e.target.value);
+                        setTeamName(e.target.value);
                     }}
                 />
-                <StyledLabel htmlFor = 'description'>Description</StyledLabel>
+                <StyledLabel htmlFor = 'description'>Team Description</StyledLabel>
                 <StyledInputArea
-                    placeholder = 'Describe the task'
+                    placeholder = 'Description'
                     id = 'description'
                     value = {desc}
                     onChange = {(e)=>{
                         setDesc(e.target.value);
                     }}
                 />
-                <StyledLabel htmlFor = 'submissionType'>Submission Type</StyledLabel>
-                <StyledSelect onChange={handleSelect}>
-                    <StyledOption value="">Select a type</StyledOption>
-                    <StyledOption value="PDF">PDF</StyledOption>
-                    <StyledOption value="Text">Text</StyledOption>
-                    <StyledOption value="Link">Link</StyledOption>
-                </StyledSelect>
+                <StyledLabel htmlFor = 'Description'>Team Members</StyledLabel>
+                <label style={{padding: '0 15px'}}>First member</label>
+                <StyledInput
+                    id = 'member'
+                    value = {desc}
+                    onChange = {(e)=>{
+                        setDesc(e.target.value);
+                    }}
+                />
+                <label style={{padding: '0 15px'}}>Second member</label>
+                <StyledInput
+                    id = 'member'
+                    value = {desc}
+                    onChange = {(e)=>{
+                        setDesc(e.target.value);
+                    }}
+                />
+                <label style={{padding: '0 15px'}}>Third member</label>
+                <StyledInput
+                    id = 'member'
+                    value = {desc}
+                    onChange = {(e)=>{
+                        setDesc(e.target.value);
+                    }}
+                />
+                <label style={{padding: '0 15px'}}>Fourth member (optional)</label>
+                <StyledInput
+                    id = 'member'
+                    value = {desc}
+                    onChange = {(e)=>{
+                        setDesc(e.target.value);
+                    }}
+                />
                 <PrimaryButton text='Add task'
                     sty={{position: 'absolute', bottom: 30, width: '90%', transform: 'translateX(-50%)', left: '50%'}}
                 ></PrimaryButton>
@@ -84,4 +106,4 @@ function AddTaskPage(props: AddTaskPageProps){
     );
 }
 
-export default AddTaskPage;
+export default AddTeamPage;

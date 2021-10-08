@@ -9,9 +9,8 @@ const dashData = {
         'Partiv Reddy',
         'Manoj Boganahdham'
     ],
-    isTeacher: false,
+    isTeacher: true,
 };
-
 
 
 const dashTasks :ITask[] = [

@@ -1,6 +1,6 @@
 import { useTheme } from "styled-components";
 import { useState } from "react";
-import { PrimaryButton, SecondaryButton } from "../MicroComponents/Button";
+import { FixedButton, SecondaryButton } from "../MicroComponents/Button";
 import { StyledItem } from "../MicroComponents/Item";
 import { StyledRecyclerView, StyledFlexBoxRow, StyledFlexBoxCol } from "../AuxComponents/Flex";
 import { StyledPageContainer, StyledPageContent, StyledHeading } from "../AuxComponents/PageContainer";
@@ -12,7 +12,6 @@ import { SideBar } from "../AuxComponents/Sidebar";
 import { SVG } from "../AuxComponents/Svg";
 import { StyledTopBar } from "../MicroComponents/TopBar";
 import { IconContainer } from "../MicroComponents/IconContainer";
-import { SubmissionType } from "../Types"
 import { ITask } from "../Interfaces"
 
 // ---------------------------- Interfaces required --------------------------
@@ -124,16 +123,7 @@ function TasksView(props: ITaskViewProps){
                     })
                 }
             </StyledRecyclerView>
-            {isTeacher && <PrimaryButton text="Add Tasks" sty=
-                {{
-                    position: 'fixed', 
-                    bottom: '20px', 
-                    left: '50%', 
-                    transform: 'translate(-50%)', 
-                    width: 'fit-content', 
-                    padding: '10px 20px'
-                }}
-            />}
+            {isTeacher && <FixedButton text="Add Tasks" />}
         </>
     );
 }

@@ -21,44 +21,91 @@ const taskTeamsData: ITeam[] = [
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "Online voting portal",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: false,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "Restaurant service",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "Online complaint service",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "Reporting Application for Software Engineering",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: false,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "Garbage collection system",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "Reporting Application for Software Engineering",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: false,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "OTT platform",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: false,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     },{
         teamName: "Reporting Application for Software Engineering",
+        teamMembers: [
+            "Manoj Boganadham",
+            "Govind Rathore",
+            "Himanshu Sah",
+            "Parthiv Reddy Sidda"
+        ],
         submissionStatus: true,
         submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWE", 
     }, 
 ];
 
-const taskTeamData = {
+const taskTeamData: ITeam = {
     teamName: "Reporting Application for Software Engineering",
     submissionStatus: true,
     submissionURL: "https://drive.google.com/drive/u/1/folders/1RAhtzIO0SjDfJkEST-sz2UWuq2FjwFWEhttps://drive.google.com/drive/u/1/folders/1ygGVHnnG-6bKjM8mjVNAD_d5zphKl0mU", 
-    // remark: "No remark till now",
 }
 
 export { taskData, taskTeamsData, taskTeamData };
