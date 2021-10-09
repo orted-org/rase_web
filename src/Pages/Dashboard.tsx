@@ -1,5 +1,5 @@
 import { useTheme } from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FixedButton, SecondaryButton } from "../MicroComponents/Button";
 import { StyledItem } from "../MicroComponents/Item";
 import { StyledRecyclerView, StyledFlexBoxRow, StyledFlexBoxCol } from "../AuxComponents/Flex";
@@ -13,6 +13,8 @@ import { SVG } from "../AuxComponents/Svg";
 import { StyledTopBar } from "../MicroComponents/TopBar";
 import { IconContainer } from "../MicroComponents/IconContainer";
 import { ITask } from "../Interfaces"
+import { useHistory } from "react-router";
+import { SideBarContext } from "../util/Context";
 
 // ---------------------------- Interfaces required --------------------------
 
@@ -46,6 +48,7 @@ function TasksView(props: ITaskViewProps){
     const data = props.config.data;
     const isTeacher = props.config.isTeacher;
     const theme = useTheme() as any;
+    const history = useHistory();
 
     return (
         <>
@@ -123,7 +126,7 @@ function TasksView(props: ITaskViewProps){
                     })
                 }
             </StyledRecyclerView>
-            {isTeacher && <FixedButton text="Add Tasks" />}
+            {isTeacher && <FixedButton text="Add Tasks" onClick={()=>{console.log('clicked');history.push("/add-task")}} />}
         </>
     );
 }
@@ -132,7 +135,9 @@ function DashboardPage(props: IDashBoardPageProps){
     const [data, setData] = useState<ITaskPageData>();
     const [isTeacher, setIsTeacher] = useState<boolean>(false);
     const [isEmpty, setIsEmpty] = useState<boolean>(true);
-    const [isSideBarOpen, setIsSidebarOpen] = useState<boolean>(false);
+    // const [isSideBarOpen, setIsSidebarOpen] = useState<boolean>(false);
+    const sideBarContext = useContext(SideBarContext);
+    const theme = useTheme() as any;
 
     useEffect(()=>{
         const currDate: any = new Date();
@@ -156,19 +161,18 @@ function DashboardPage(props: IDashBoardPageProps){
         setIsTeacher(data.isTeacher);
     }, []);
     
-    const theme = useTheme() as any;
 
-    const toggleSideBar = ()=>{
-        setIsSidebarOpen(prevState=>{
-            return !prevState;
-        });
-    }
+    // const toggleSideBar = ()=>{
+    //     setIsSidebarOpen(prevState=>{
+    //         return !prevState;
+    //     });
+    // }
 
     return (
         <StyledPageContainer>
-            <SideBar isSideBarOpen={isSideBarOpen} toggleSideBar={toggleSideBar} isTeacher={isTeacher}/>
+            <SideBar isSideBarOpen={sideBarContext.isSidebarOpen} toggleSideBar={sideBarContext.toggleSideBar} isTeacher={isTeacher}/>
             <StyledTopBar>
-                <IconContainer onClick={toggleSideBar}>
+                <IconContainer onClick={sideBarContext.toggleSideBar}>
                     {SVG.menubar}
                 </IconContainer>
                 <h2>Dashboard</h2>

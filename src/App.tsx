@@ -5,9 +5,11 @@ import {
   Route,
 } from "react-router-dom";
 import { GlobalStyle, UniformTheme } from './Styles/Global';
-import { ThemeProvider, useTheme } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import LoadingAnimation from "./AuxComponents/LoadingAnimation";
-import { UserAuthContext } from "./util/Context";
+import { UserAuthContext, SideBarContext } from "./util/Context";
+import ExptPage from "./Pages/Expt";
+import { SideBar } from "./AuxComponents/Sidebar";
 
 // ------------------ dynamic import pages ----------------------------
 
@@ -25,8 +27,17 @@ const NotFound = React.lazy(() => import("./Pages/NotFound"));
 // -------------------------- routing happens here ----------------------------
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isTeacher, setIsTeacher] = useState<boolean>(true);
+
   const setUserLoggedIn = (loggedIn: boolean) => {
     setIsUserLoggedIn(loggedIn);
+  }
+
+  const toggleSideBar = ()=>{
+    setIsSidebarOpen(prevState=>{
+        return !prevState;
+    });
   }
 
   return (
@@ -34,34 +45,53 @@ function App() {
       <GlobalStyle theme={UniformTheme}/>
       <Suspense fallback={<LoadingAnimation />}>
         <UserAuthContext.Provider value={{ isUserLoggedIn, setUserLoggedIn }}>
-          <Router>
-            <Switch>
-              <Route exact path='/'>
-                <LoginPage />
-              </Route>
-              <Route exact path='/task'>
-                <TaskPage />
-              </Route>
-              <Route exact path='/add-task'>
-                <AddTaskPage />
-              </Route>
-              <Route exact path='/add-team'>
-                <AddTeamPage />
-              </Route>
-              <Route exact path='/search-teams'>
-                <SearchTeamsPage />
-              </Route>
-              <Route exact path='/dashboard'>
-                <DashboardPage />
-              </Route>
-              <Route exact path='/join-team'>
-                <JoinTeamPage />
-              </Route>
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
-          </Router>
+          <SideBarContext.Provider value={{ isSidebarOpen, toggleSideBar }}>
+              <Router>
+                <Switch>
+                  {/* for login */}
+                  <Route exact path='/'>
+                    <LoginPage />
+                  </Route>
+                  {/* dashboard page
+                  user will be redirected to this page after login */}
+                  <Route exact path='/dashboard'>
+                    <DashboardPage />
+                  </Route>
+                  {/* Task page - to see all tasks */}
+                  <Route exact path='/task'>
+                    <TaskPage />
+                  </Route>
+                    {/* to add new task - only for teacher
+                    if not teacher but tried to access this route, user will be redirected to dashboard */}
+                  <Route exact path='/add-task'>
+                    <AddTaskPage />
+                  </Route>
+                  {/* to add new team - only for student
+                    if not teacher but tried to access this route, user will be redirected to dashboard */}
+                  <Route exact path='/add-team'>
+                    <AddTeamPage />
+                  </Route>
+                  {/* to search teams - only for teacher
+                  if not teacher, but tried to access this route, user will be redirected to dashboard */}
+                  <Route exact path='/search-teams'>
+                    <SearchTeamsPage />
+                  </Route>
+                  {/* to create or join a team - only for student
+                  if not student, but tried to access this route, user will be redirected to dashboard */}
+                  <Route exact path='/join-team'>
+                    <JoinTeamPage />
+                  </Route>
+                  {/* just a route to experiment with react */}
+                  <Route exact path='/expt'>
+                    <ExptPage />
+                  </Route>
+                  {/* error page - this is rendered when no route above is matching with the url */}
+                  <Route>
+                    <NotFound />
+                  </Route>
+                </Switch>
+              </Router>
+          </SideBarContext.Provider>
         </UserAuthContext.Provider>
       </Suspense>
     </ThemeProvider>

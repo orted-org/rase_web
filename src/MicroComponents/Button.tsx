@@ -4,7 +4,7 @@ import styled, { useTheme } from "styled-components";
 
 interface IPrimaryButtonProps{
     sty?: React.CSSProperties;
-    onClick?: ()=>void;
+    onClick: ()=>void;
     text: string
 };
 
@@ -16,6 +16,7 @@ interface ISecondaryButtonProps{
 
 interface IFixedButtonProps{
     text: string;
+    onClick: () => void;
 };
 
 // -------------- End of interfaces -----------------
@@ -63,8 +64,6 @@ const StyledSecondaryButton = styled.button`
 // --------------- Components to be exported -----------------
 
 function PrimaryButton(props: IPrimaryButtonProps){
-    const theme = useTheme();
-
     return (
         <StyledPrimaryButton
             style = {props.sty}
@@ -97,6 +96,7 @@ function FixedButton(props: IFixedButtonProps){
                     width: 'fit-content', 
                     padding: '10px 20px'
                 }}
+                onClick = {props.onClick}
             />
     );
 }

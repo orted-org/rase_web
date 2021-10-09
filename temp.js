@@ -7,3 +7,5 @@
 // v) see if we can use useContext for sidebar state
 // ix) authentication should be done
 // x) see context and reducer hooks once again
+// xi) isTeacher prop will come in auth context
+// xii) try to check if we can put the sidebar in app.tsx instead of using it in each page

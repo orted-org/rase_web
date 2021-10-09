@@ -1,5 +1,7 @@
 import { ITask } from "../Interfaces";
+// isTeacher is to be taken from auth context
 
+// this is mostly taken from auth context
 const dashData = {
     userName: "Manoj Boganadham",
     teamName: "Reporting Application for Software Engineering",

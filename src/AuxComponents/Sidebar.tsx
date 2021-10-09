@@ -4,6 +4,8 @@ import { IconContainer } from "../MicroComponents/IconContainer";
 import { PrimaryButton } from "../MicroComponents/Button";
 import { useTheme } from "styled-components";
 import { SVG } from "./Svg";
+import { useHistory } from "react-router";
+import { useState } from "react";
 
 // ------------------ Interfaces --------------------------
 
@@ -64,8 +66,13 @@ const StyledSidebarSVG = styled.div`
 
 function SideBar(props: ISideBarProps){
     const isTeacher = props.isTeacher;
-    const toggleSideBar = props.toggleSideBar; 
+    const toggleSideBar = props.toggleSideBar;
+    
+    // const [isSideBarOpen, setIsSidebarOpen] = useState<boolean>(false);
+    // const [isTeacher, setIsTeacher] = useState<boolean>(true);
     const theme = useTheme() as any;
+    const history = useHistory();
+    
 
     return (
         <SideBarContainer style={{
@@ -82,14 +89,24 @@ function SideBar(props: ISideBarProps){
                 {SVG.cross}
             </IconContainer>
             <StyledFlexBoxCol style={{alignItems: 'center', paddingTop: 60}}>
-                {isTeacher && <StyledSidebarOption>
+                {isTeacher && <StyledSidebarOption
+                    onClick= {()=>{
+                        toggleSideBar();
+                        console.log(history);
+                        history.push("/search-teams");
+                    }}
+                >
                     <StyledSidebarSVG style={{
                         height: '25px',
                         width: '25px'
                     }}>{SVG.search}</StyledSidebarSVG>
                     Search Teams
                     </StyledSidebarOption>}
-                {isTeacher ? <StyledSidebarOption>
+                {isTeacher ? <StyledSidebarOption
+                    onClick= {()=>{
+                        toggleSideBar();
+                    }}
+                >
                     <StyledSidebarSVG style={{
                         height: '25px',
                         width: '25px'
@@ -102,15 +119,17 @@ function SideBar(props: ISideBarProps){
                     Download team data</StyledSidebarOption>}
 
                 <PrimaryButton text="Log out" sty={{
-                    width: '90%', 
-                    backgroundColor: theme.primaryBack, 
-                    color: theme.primaryText, 
-                    fontSize: '1.1rem', 
-                    position: 'absolute', 
-                    bottom: 20, 
-                    left: '50%',
-                    transform: 'translateX(-50%)'
-                }}/>
+                        width: '90%', 
+                        backgroundColor: theme.primaryBack, 
+                        color: theme.primaryText, 
+                        fontSize: '1.1rem', 
+                        position: 'absolute', 
+                        bottom: 20, 
+                        left: '50%',
+                        transform: 'translateX(-50%)'
+                    }}
+                    onClick={()=>{history.push('/')}}
+                />
             </StyledFlexBoxCol>
         </SideBarContainer>
     );

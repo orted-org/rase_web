@@ -3,7 +3,7 @@ import { StyledTopBar } from "../MicroComponents/TopBar";
 import { SideBar } from "../AuxComponents/Sidebar";
 import { StyledPageContainer, StyledPageContent, StyledHeading } from "../AuxComponents/PageContainer";
 import { StyledSearchBar } from "../MicroComponents/SearchBar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IconContainer } from "../MicroComponents/IconContainer";
 import { SVG } from "../AuxComponents/Svg";
 import { PlaceFiller } from "../AuxComponents/Filler";
@@ -15,6 +15,7 @@ import { SecondaryButton } from "../MicroComponents/Button";
 import { taskTeamsData } from "../util/taskData";
 import { searchEngine } from "../Helpers/SearchUtil";
 import { Redirect } from "react-router-dom";
+import { SideBarContext } from "../util/Context";
 
 // ----------------------------- Interfaces --------------------------
 
@@ -26,16 +27,17 @@ interface ISearchTeamsPageProps{
 
 function SearchTeamsPage(props: ISearchTeamsPageProps){
     const [searchText, setSearchText] = useState<string>('');
-    const [isSideBarOpen, setIsSidebarOpen] = useState<boolean>(false);
+    // const [isSideBarOpen, setIsSidebarOpen] = useState<boolean>(false);
     const [isTeacher, setIsTeacher] = useState<boolean>(true);
     const [teamsData, setTeamsData] = useState<ITeam[]>(taskTeamsData);
     const [searchResult, setSearchResult] = useState<ITeam[]>([]);
+    const sideBarContext = useContext(SideBarContext);
 
-    const toggleSideBar = ()=>{
-        setIsSidebarOpen(prevState=>{
-            return !prevState;
-        });
-    }
+    // const toggleSideBar = ()=>{
+    //     setIsSidebarOpen(prevState=>{
+    //         return !prevState;
+    //     });
+    // }
 
     useEffect(()=>{
         setSearchResult(searchEngine(teamsData, searchText));
@@ -49,9 +51,9 @@ function SearchTeamsPage(props: ISearchTeamsPageProps){
 
     return (
         <StyledPageContainer>
-            <SideBar isSideBarOpen={isSideBarOpen} toggleSideBar={toggleSideBar} isTeacher={isTeacher}/>
+            <SideBar isSideBarOpen={sideBarContext.isSidebarOpen} toggleSideBar={sideBarContext.toggleSideBar} isTeacher={isTeacher}/>
             <StyledTopBar>
-                <IconContainer onClick={toggleSideBar}>
+                <IconContainer onClick={sideBarContext.toggleSideBar}>
                     {SVG.menubar}
                 </IconContainer>
                 <h2>Search Teams</h2>

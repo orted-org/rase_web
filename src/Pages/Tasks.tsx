@@ -1,5 +1,5 @@
 import styled, { useTheme } from "styled-components";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { PrimaryButton, SecondaryButton } from "../MicroComponents/Button";
 import { StyledItem } from "../MicroComponents/Item";
 import { StyledRecyclerView, StyledFlexBoxRow } from "../AuxComponents/Flex";
@@ -15,6 +15,8 @@ import { StyledSearchBar } from "../MicroComponents/SearchBar";
 import { StyledText } from "../MicroComponents/SecText";
 import { ITeam } from "../Interfaces";
 import { SubmissionType } from "../Types";
+import { useHistory } from "react-router";
+import { SideBarContext } from "../util/Context";
 
 // ------------------------------ Interfaces --------------------------------------
 
@@ -192,7 +194,7 @@ function TeacherTeamsView(props: ITeacherTeamsViewProps){
 
 function StudentTaskView(props: IStudentTaskViewProps){
     const data = props.teamData;
-    console.log(data);
+    const history = useHistory();
     const theme = useTheme() as any;
 
     return (
@@ -214,7 +216,7 @@ function StudentTaskView(props: IStudentTaskViewProps){
                         Tap on submit button to create your submission
                     </StyledText>
                     {data.submissionURL!=="" ? <a href={data.submissionURL} style={{textDecoration: 'none', color: theme.positiveAccent}} target={'_blank'}>Tap to view your submission</a> : 'No submission yet'}
-                    <PrimaryButton text="Submit"/>
+                    <PrimaryButton text="Submit" onClick={()=>{history.push('/task')}} />
                 </StyledCard>
             </div>
         </div>
@@ -242,16 +244,17 @@ function TaskPage(props: ITaskPageProps){
         return !team.submissionStatus;
     });
 
-    const toggleSideBar = ()=>{
-        setIsSidebarOpen(prevState=>{
-            return !prevState;
-        });
-    }
+    // const toggleSideBar = ()=>{
+    //     setIsSidebarOpen(prevState=>{
+    //         return !prevState;
+    //     });
+    // }
 
     const [data, setData] = useState(initData);
     const [isTeacher, setIsTeacher] = useState(initData.isTeacher);
     const [isEmpty, setIsEmpty] = useState(false);
-    const [isSideBarOpen, setIsSidebarOpen] = useState(false);
+    // const [isSideBarOpen, setIsSidebarOpen] = useState(false);
+    const sideBarContext = useContext(SideBarContext);
 
     useEffect(()=>{
         // setData(initData);
@@ -263,9 +266,9 @@ function TaskPage(props: ITaskPageProps){
 
     return (
         <StyledPageContainer>
-            <SideBar isSideBarOpen={isSideBarOpen} toggleSideBar={toggleSideBar} isTeacher={isTeacher}/>
+            <SideBar isSideBarOpen={sideBarContext.isSidebarOpen} toggleSideBar={sideBarContext.toggleSideBar} isTeacher={isTeacher}/>
             <StyledTopBar>
-                <IconContainer onClick={toggleSideBar}>
+                <IconContainer onClick={sideBarContext.toggleSideBar}>
                     {SVG.menubar}
                 </IconContainer>
                 <h2>Tasks</h2>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { StyledTopBar } from "../MicroComponents/TopBar";
 import { PrimaryButton } from "../MicroComponents/Button";
 import { SVG } from "../AuxComponents/Svg";
@@ -7,8 +7,9 @@ import { SideBar } from "../AuxComponents/Sidebar";
 import { StyledInput, StyledInputArea, StyledSelect, StyledOption, StyledLabel } from "../MicroComponents/Input";
 import { IconContainer } from "../MicroComponents/IconContainer";
 import { StyledPageContainer, StyledPageContent } from "../AuxComponents/PageContainer";
-import { Redirect } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { useTheme } from "styled-components";
+import { SideBarContext } from "../util/Context";
 
 interface AddTaskPageProps{
 
@@ -16,17 +17,18 @@ interface AddTaskPageProps{
 
 function AddTeamPage(props: AddTaskPageProps){
     const [isTeacher, setIsTeacher] = useState(false);
-    const [isSideBarOpen, setIsSidebarOpen] = useState(false);
+    // const [isSideBarOpen, setIsSidebarOpen] = useState(false);
     const [teamName, setTeamName] = useState('');
     const [desc, setDesc] = useState('');
-
+    const history = useHistory();
+    const sideBarContext = useContext(SideBarContext);
     const theme = useTheme() as any;
 
-    const toggleSideBar = ()=>{
-        setIsSidebarOpen(prevState=>{
-            return !prevState;
-        });
-    }
+    // const toggleSideBar = ()=>{
+    //     setIsSidebarOpen(prevState=>{
+    //         return !prevState;
+    //     });
+    // }
 
     if(isTeacher){
         return (
@@ -36,9 +38,9 @@ function AddTeamPage(props: AddTaskPageProps){
 
     return (
         <StyledPageContainer>
-            <SideBar isSideBarOpen={isSideBarOpen} toggleSideBar={toggleSideBar} isTeacher={isTeacher}/>
+            <SideBar isSideBarOpen={sideBarContext.isSidebarOpen} toggleSideBar={sideBarContext.toggleSideBar} isTeacher={isTeacher}/>
             <StyledTopBar>
-                <IconContainer onClick={toggleSideBar}>
+                <IconContainer onClick={sideBarContext.toggleSideBar}>
                     {SVG.menubar}
                 </IconContainer>
                 <h2>Add Team</h2>
@@ -100,6 +102,7 @@ function AddTeamPage(props: AddTaskPageProps){
                 />
                 <PrimaryButton text='Add task'
                     sty={{position: 'absolute', bottom: 30, width: '90%', transform: 'translateX(-50%)', left: '50%'}}
+                    onClick={()=>{history.push('/dashboard')}}
                 ></PrimaryButton>
             </StyledPageContent>
         </StyledPageContainer>

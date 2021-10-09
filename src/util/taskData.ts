@@ -1,4 +1,5 @@
 import { ITaskData, ITeam } from "../Interfaces";
+// isTeacher is to be taken from auth context
 
 const taskData: ITaskData = {
     title: "WBS of the project",
