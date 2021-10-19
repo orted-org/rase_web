@@ -30,7 +30,7 @@ const getAllTeamsReq = new Request(Endpoints.getAllTeams,  initGetReq);
 
 const getSubmissionStatusReq = new Request(Endpoints.getSubmissionStatus, initGetReq);
 
-const getUserDetailsReq = new Request(Endpoints.getUserDetailsById, initGetReq);
+const getUserDetailsReq = new Request(Endpoints.getUserDetailsById, initGetReq);/*  */
 
 // -------------------- POST requests --------------------
 

@@ -5,7 +5,6 @@ import { PrimaryButton } from "../MicroComponents/Button";
 import { useTheme } from "styled-components";
 import { SVG } from "./Svg";
 import { useHistory } from "react-router";
-import { useState } from "react";
 
 // ------------------ Interfaces --------------------------
 
@@ -67,9 +66,6 @@ const StyledSidebarSVG = styled.div`
 function SideBar(props: ISideBarProps){
     const isTeacher = props.isTeacher;
     const toggleSideBar = props.toggleSideBar;
-    
-    // const [isSideBarOpen, setIsSidebarOpen] = useState<boolean>(false);
-    // const [isTeacher, setIsTeacher] = useState<boolean>(true);
     const theme = useTheme() as any;
     const history = useHistory();
     

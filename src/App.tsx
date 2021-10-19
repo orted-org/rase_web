@@ -14,8 +14,8 @@ import { SideBar } from "./AuxComponents/Sidebar";
 // ------------------ dynamic import pages ----------------------------
 
 const LoginPage = React.lazy(() => import("./Pages/Login"));
-const DashboardPage = React.lazy(() => import("./Pages/Dashboard"));
-const TaskPage = React.lazy(() => import("./Pages/Tasks"));
+const DashboardPage = React.lazy(() => import("./Pages/DashboardPage/Dashboard"));
+const TaskPage = React.lazy(() => import("./Pages/TaskPage/Task"));
 const AddTaskPage = React.lazy(() => import("./Pages/AddTask"));
 const AddTeamPage = React.lazy(() => import("./Pages/AddTeam"));
 const SearchTeamsPage = React.lazy(() => import("./Pages/SearchTeams"));
@@ -86,7 +86,7 @@ function App() {
                     <ExptPage />
                   </Route>
                   {/* error page - this is rendered when no route above is matching with the url */}
-                  <Route>
+                  <Route path='*'>
                     <NotFound />
                   </Route>
                 </Switch>
